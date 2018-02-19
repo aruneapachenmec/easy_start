@@ -2,38 +2,26 @@
 
 EasyStart will allow users to quickly start the local rails server in a single command. This gem is intended to be used only in development mode. 
 
-	$ easy_start project_name
+	$ easy_start application_name
 the above command will start the rails server in your local machine and you are ready to go to your browser to test or develop your application. 
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'easy_start'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install easy_start
 
 ## Usage
 
-After installing the gem, add the projects that needs to be started by the following command
+After installing the gem, add the rails application that needs to be started by the following command
 	
-	$ easy_start -a project_name -p project_path
+	$ easy_start -a application_name -p application_path
 
 Now you are ready to start your project from anywhere in terminal by 
 
-	$ easy_start project_name
+	$ easy_start application_name
 
 Switching branches are also supported by EasyStart
 
-	$ easy_start project_name branch_name
+	$ easy_start application_name branch_name
 
 Note: mentioning branch name will switch the application directory to that branch and will automatically pull the latest version of the branch before starting the server.
 
