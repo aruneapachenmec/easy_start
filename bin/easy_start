@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require 'easy_start'
+require 'optparse'
+require 'active_support/all'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: easy_start [options]"
+
+  opts.on('-a', '--add add', 'Add new project') do |add|
+		options['project_name'] = add;
+	end
+
+	opts.on('-p', '--path path', 'path, should be mentioned after -a') do |path|
+		options['project_path'] = path;
+	end
+end.parse!
+
+if options.present?
+	EasyStart.add(options)
+else
+	EasyStart.launch(ARGV[0],ARGV[1])
+end
