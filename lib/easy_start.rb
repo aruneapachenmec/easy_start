@@ -32,10 +32,13 @@ module EasyStart
 		end
 	end
 
-	def self.launch(name,branch='')		
+	def self.launch(launch_data,branch='')		
+		name = launch_data.respond_to?(:keys) ? launch_data['launch_project_name'] : launch_data
+		port = launch_data['project_port'] || '3000'
+		branch = launch_data['project_branch'] || branch
 		begin
 			file_path = File.join(File.dirname(__FILE__), "../scripts/#{name}.sh")
-			a = system "#{file_path}",(branch || '') 
+			a = system "#{file_path}", port ,(branch || '') 
 		rescue SystemExit, Interrupt
 			exit 0
 		rescue Exception => e
@@ -43,7 +46,27 @@ module EasyStart
 		end	
 	end
 
-	def self.meta_data
-		['cd "$ROOT_PATH"','if [ -n "$1" ]; then','git checkout $1','git pull','fi','rails s'].join("\n")
+	def self.launch_console(name)
+		root_path = get_root_path(name)
+		system "cd #{root_path} && rails c" 
 	end
+
+	def self.meta_data
+		['cd "$ROOT_PATH"','if [ -n "$2" ]; then','git checkout $2','git pull','fi','rails s -p $1'].join("\n")
+	end
+
+	def self.get_root_path(name)
+		root_path = ""
+		file_path = File.join(File.dirname(__FILE__), "../scripts/#{name}.sh")
+		File.open(file_path).each do |line|
+			if line.include? 'ROOT_PATH='
+				line.slice!("ROOT_PATH=\"")
+				line.slice!("\"\n")
+				root_path = line
+				break
+			end
+		end
+		root_path
+	end
+
 end

@@ -15,10 +15,36 @@ OptionParser.new do |opts|
 	opts.on('-p', '--path path', 'path, should be mentioned after -a') do |path|
 		options['project_path'] = path;
 	end
+
+	opts.on('-l', '--launch launch', 'launch, mention application_name') do |name|
+		options['launch_project_name'] = name;
+	end
+
+	opts.on('-b', '--branch branch', 'branch, should be mentioned after application_name') do |branch|
+		options['project_branch'] = branch;
+	end
+
+	opts.on('-P', '--port port', 'port, should be mentioned after application_name') do |port|
+		options['project_port'] = port;
+	end
+
+	opts.on('-c', '--console console', 'console, mention application_name for launching console') do |console_name|
+		options['console_project_name'] = console_name;
+	end
+
 end.parse!
 
 if options.present?
-	EasyStart.add(options)
+	case 
+	when options['project_name'].present?
+		EasyStart.add(options)
+	when options['launch_project_name'].present?
+		EasyStart.launch(options)
+	when options['console_project_name'].present?
+		EasyStart.launch_console(options['console_project_name'])
+	else
+		puts 'Format provided incorrect!!'
+	end
 else
 	EasyStart.launch(ARGV[0],ARGV[1])
 end
