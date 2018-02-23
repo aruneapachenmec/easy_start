@@ -1,9 +1,17 @@
 # EasyStart
 
-EasyStart will allow users to quickly start the local rails server in a single command. This gem is intended to be used only in development mode. 
+EasyStart will allow users to run certain rails commands (mainly used in local development environment) related to a application from anywhere in terminal. User need not change directory to the application root for running commands like `rails s` , `rails c` etc. Just adding the application path and application name to the meta data is required to use this gem. 
+
+After adding the application data, you can lauch the rails server of the application from anywhere in the terminal by running the following command
 
 	$ easy_start application_name
-the above command will start the rails server in your local machine and you are ready to go to your browser to test or develop your application. 
+
+The Gem will start the rails server on port 3000.
+
+EasyStart also supports switching branches, mentioning the port, opening rails console.
+
+Add multiple projects and start their server or access their console with a single command.
+ 
 
 ## Installation
 
@@ -19,11 +27,31 @@ Now you are ready to start your project from anywhere in terminal by
 
 	$ easy_start application_name
 
+	or
+
+	$ easy_start -l application_name
+
 Switching branches are also supported by EasyStart
 
 	$ easy_start application_name branch_name
 
-Note: mentioning branch name will switch the application directory to that branch and will automatically pull the latest version of the branch before starting the server.
+	or
+
+	$ easy_start -l application_name -b branch_name
+
+Note: mentioning branch name will switch the application directory to that branch and will automatically pull the latest version of the branch before starting the server( the branch should be available locally for it to work as expected).
+
+Mentioning the port to be used by the server
+
+	$ easy_start -l application_name -P 4000
+
+By default application will run on port 3000.
+
+Opening rails console
+
+	$ easy_start -l application_name -P 4000
+
+
 
 ## Development
 
