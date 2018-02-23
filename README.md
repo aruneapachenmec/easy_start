@@ -1,16 +1,18 @@
 # EasyStart
 
-EasyStart will allow users to run certain rails commands (mainly used in local development environment) related to a application from anywhere in terminal. User need not change directory to the application root for running commands like `rails s` , `rails c` etc. Just adding the application path and application name to the meta data is required to use this gem. 
+EasyStart will allow users to run certain rails commands (mainly used in local development environment) related to a application from anywhere in terminal. 
+User need not change directory to the application root for running commands like `rails s` , `rails c` etc. 
+Just adding the application path and application name to the meta data is required to use this gem. 
 
-After adding the application data, you can lauch the rails server of the application from anywhere in the terminal by running the following command
+After adding the meta data, you can launch the application from anywhere in the terminal by running the following command
 
 	$ easy_start application_name
 
-The Gem will start the rails server on port 3000.
+This will start the rails server on port 3000.
 
 EasyStart also supports switching branches, mentioning the port, opening rails console.
 
-Add multiple projects and start their server or access their console with a single command.
+Add multiple projects and start their server or access their console with single command.
  
 
 ## Installation
@@ -49,7 +51,7 @@ By default application will run on port 3000.
 
 Opening rails console
 
-	$ easy_start -l application_name -P 4000
+	$ easy_start -c application_name 
 
 
 
